@@ -1,4 +1,8 @@
 -------------------------------------
+INVENTORY PAGE PSEUDO-CODE WORKSHEET 
+------------------------------------- 
+
+- nicole
 FORM PAGE PSEUDO-CODE WORKSHEET 
 ------------------------------------- 
 
