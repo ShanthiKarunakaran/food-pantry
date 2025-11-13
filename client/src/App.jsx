@@ -4,8 +4,6 @@ import SavedCountries from "./Pages/SavedCountries.jsx";
 // import localData from "../../localData.js";
 import React, { useState, useEffect } from "react";
 
-import CountryDetail from "./Pages/CountryDetail.jsx";
-
 function App() {
   const [countries, setCountries] = useState([]);
   //Below we are creating the variable getCountriesData to retreave the country data from the api
