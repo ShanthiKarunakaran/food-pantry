@@ -1,9 +1,9 @@
 import localData from "../../localData.js";
-import CountryDetail from "./CountryDetail.jsx";
-import CountryCard from "./CountryCard.jsx";
+
 import SavedCountries from "./SavedCountries.jsx";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Form from "../Components/Form.jsx";
 
 export default function Home({ countries }) {
   const [searchBar, setSearchBar] = useState("");
@@ -70,6 +70,7 @@ export default function Home({ countries }) {
           <CountryCard key={country.name?.common} country={country} />
         ))}
       </div>
+      <Form />
     </>
   );
 }
