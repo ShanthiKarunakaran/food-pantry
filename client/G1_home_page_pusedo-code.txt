@@ -2,4 +2,163 @@
 HOME PAGE PSEUDO-CODE WORKSHEET 
 ------------------------------------- 
 
-Pseudo code branch testing
+
+## 🛠️ Pseudo-Code Plan: Home Page Functionality
+
+### 1. 🏡 Home.jsx (The Brain & Data Manager)
+
+FUNCTION Home() {
+    // 1. STATE MANAGEMENT (Defined by the Page Owner)
+    DEFINE state foodBanks = []       // Full list from API
+    DEFINE state isLoading = true
+    DEFINE state error = null
+
+    // State for filtering parameters (Used by SearchBar and its children)
+    DEFINE state searchTerm = ""
+    DEFINE state selectedRegion = "All"
+    DEFINE state selectedDiet = "All"
+
+    // 2. LIFECYCLE: Fetch Data (API Integration)
+    ON initial component load (useEffect):
+        CALL API to fetch food bank data
+        IF successful:
+            SET foodBanks to received data
+        ELSE:
+            SET error state
+        SET isLoading to false
+
+    // 3. CALLBACK FUNCTIONS (Passed down as props to children)
+    FUNCTION handleSearchChange(newValue):
+        SET searchTerm to newValue
+
+    FUNCTION handleRegionChange(newRegion):
+        SET selectedRegion to newRegion
+
+    FUNCTION handleDietChange(newDiet):
+        SET selectedDiet to newDiet
+
+    // 4. FILTERING LOGIC (The Core Business Logic)
+    FUNCTION getFilteredBanks(banks):
+        IF isLoading OR error THEN RETURN []
+
+        LET results = banks
+
+        // Apply Search Filter (Case-insensitive matching)
+        IF searchTerm is NOT empty:
+            results = results.FILTER bank WHERE bank.name OR bank.address INCLUDES searchTerm
+
+        // Apply Region Filter
+        IF selectedRegion is NOT "All":
+            results = results.FILTER bank WHERE bank.region EQUALS selectedRegion
+
+        // Apply Diet Filter (Checking if bank's array contains the selected diet)
+        IF selectedDiet is NOT "All":
+            results = results.FILTER bank WHERE bank.dietary ARRAY INCLUDES selectedDiet
+
+        RETURN results
+    
+    // 5. RENDERING
+    LET finalBanks = getFilteredBanks(foodBanks)
+
+    RETURN (
+        <Header /> 
+        <main>
+            // Pass current values and setter functions down to SearchBar
+            <SearchBar 
+                searchTerm={searchTerm} 
+                onSearchChange={handleSearchChange}
+                selectedRegion={selectedRegion}
+                onRegionChange={handleRegionChange}
+                selectedDiet={selectedDiet}
+                onDietChange={handleDietChange}
+            />
+
+            <hr />
+            
+            IF isLoading THEN RENDER "Loading..."
+            ELSE IF error THEN RENDER "Error..."
+            ELSE IF finalBanks is empty THEN RENDER "No results..."
+            ELSE:
+                RENDER finalBanks.MAP(bank => <FoodBankCard bank={bank} />)
+        </main>
+    )
+}
+
+----------------------------------------------------------------------------------------------------
+
+### 2. 🔍 SearchBar.jsx (Input Container)
+
+FUNCTION SearchBar(props: {searchTerm, onSearchChange, selectedRegion, onRegionChange, selectedDiet, onDietChange}) {
+    
+    // RENDER:
+    <section className="filter-bar">
+        // Text Input: Calls the parent's handler function on change
+        <input 
+            type="text" 
+            value={props.searchTerm} 
+            onChange={ (e) => props.onSearchChange(e.target.value) } 
+        />
+        
+        <div className="filter-group">
+            // Pass region state and handler to RegionFilter
+            <RegionFilter 
+                selectedRegion={props.selectedRegion} 
+                onRegionChange={props.onRegionChange} 
+            />
+            
+            // Pass diet state and handler to DietFilter
+            <DietFilter 
+                selectedDiet={props.selectedDiet} 
+                onDietChange={props.onDietChange} 
+            />
+        </div>
+    </section>
+}
+
+----------------------------------------------------------------------------------------------------
+
+### 3. 🗺️ RegionFilter.jsx (Specific Filter Logic)
+
+FUNCTION RegionFilter(props: {selectedRegion, onRegionChange}) {
+    // Determine list of available regions (e.g., ["All", "North", "East"])
+    LET REGION_OPTIONS = ["All", "North", "East", "South"] 
+    
+    // RENDER:
+    <select 
+        value={props.selectedRegion} 
+        onChange={ (e) => props.onRegionChange(e.target.value) }
+    >
+        // Map over REGION_OPTIONS to create <option> tags
+    </select>
+}
+
+----------------------------------------------------------------------------------------------------
+
+### 4. 🥦 DietFilter.jsx (Specific Filter Logic)
+
+FUNCTION DietFilter(props: {selectedDiet, onDietChange}) {
+    // List of available diet options
+    LET DIET_OPTIONS = ["All", "Vegetarian", "Vegan", "Gluten-Free", "Halal"] 
+    
+    // RENDER:
+    <select 
+        value={props.selectedDiet} 
+        onChange={ (e) => props.onDietChange(e.target.value) }
+    >
+        // Map over DIET_OPTIONS to create <option> tags
+    </select>
+}
+
+----------------------------------------------------------------------------------------------------
+
+### 5. 💳 FoodBankCard.jsx (Data Presentation)
+
+FUNCTION FoodBankCard(props: {bank}) {
+    // RENDER:
+    <div className="food-bank-card">
+        <h3>{props.bank.name}</h3>
+        <p>Address: {props.bank.address}</p>
+        <p>Hours: {props.bank.hours}</p>
+        <p>Dietary Options: {props.bank.dietary.join(', ')}</p>
+    </div>
+}
