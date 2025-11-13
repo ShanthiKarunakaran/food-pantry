@@ -1,13 +1,3 @@
-// import React, { useState } from "react";
-
-// export default function Form() {
-//   return (
-//     <>
-
-//     </>
-//   );
-// }
-
 import { useState } from "react";
 import "./FoodForm.css";
 
