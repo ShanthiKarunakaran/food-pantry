@@ -70,6 +70,7 @@ export default function Home({ countries }) {
           <CountryCard key={country.name?.common} country={country} />
         ))}
       </div>
+
       <Form />
     </>
   );
