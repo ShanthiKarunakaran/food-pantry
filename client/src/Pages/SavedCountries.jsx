@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CountryCard from "./CountryCard";
+import CountryCard from "./FoodPantryCard";
 
 export default function SavedCountries({ countries }) {
   console.log(countries, "countries prop saved countries");

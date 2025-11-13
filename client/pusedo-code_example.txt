@@ -1,5 +1,5 @@
 -------------------------------------
-🧠 VERSION 3 PSEUDO-CODE WORKSHEET 
+🧠 PSEUDO-CODE WORKSHEET 
 -------------------------------------
 
 This is our WHAT, WHEN, WHERE, HOW framework for working with data:
