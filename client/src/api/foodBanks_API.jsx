@@ -6,12 +6,15 @@ export async function fetchFoodBanks_API({
     state,
     type = "foodbank", // optional; default to foodbank for your app
   }) {
-    if (!city || !state) {
+    {/*if (!city || !state) {
       throw new Error("city and state are required");
-    }
+    }*/}
   
     const baseUrl = import.meta.env.VITE_RAPIDAPI_BASE_URL;
+    console.log("Base URL:", baseUrl); 
+
     const url = new URL(`${baseUrl}/resources`);
+  
   
     // required params
     url.searchParams.set("city", city);
