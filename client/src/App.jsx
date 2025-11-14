@@ -1,12 +1,14 @@
 import "./App.css";
 import Form from "./Components/Form";
 
-function App() {
+import React, { useState, useEffect } from 'react';
+import Home from "./Pages/Home";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+
+
+export default function App() {
+
   return (
-    <div>
-      <Form />
-    </div>
+    <Home />
   );
 }
-
-export default App;
