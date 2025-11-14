@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Header from "/";
-
-
-function App() {
+import Home from "./Pages/Home";
+// import Header from "/";
 
 export default function App() {
   return (
     <>
-     <div>
-      < Header navbarSpot={<Navbar/>}/>
-      <Footer />
-    </div>
+      <div>
+        {/* < Header navbarSpot={<Navbar/>}/> */}
+        {/* <Footer /> */}
+        <Home />
+      </div>
     </>
   );
-
 }
 
 //export default App;
-
-
 
 // import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 // import Home from "./Pages/Home.jsx";
