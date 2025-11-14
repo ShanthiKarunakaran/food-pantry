@@ -59,6 +59,7 @@ function App() {
           {/* below i am making a dynamic route for a country detail page. the ":countryName" part is a parameter so when a countryName is clicked it gets shown
 I am also rendering the CountryDetail component when that happens
   lastly i am passing the countries data AND the getCountriesData function into CountryDetail as props */}
+          /*{" "}
           <Route
             path="/country-detail/:countryName"
             element={
