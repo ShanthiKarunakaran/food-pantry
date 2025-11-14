@@ -1,12 +1,8 @@
-/* --------------------------------
-Server/API for BE food pantry (Group 3)
+// Server/API for BE food pantry (Group 3)
 
-DB Fiddle Link: ______________
-----------------------------------*/
+// DB Fiddle Link: https://www.db-fiddle.com/f/23eGM2YefNA2gjujh9ACF2/14
 
-/*----------------------------------
-Boilerplate Code to Set Up Server
-----------------------------------*/
+// Boilerplate Code to Set Up Server
 
 // importing Node Modules
 import express from "express";
@@ -50,27 +46,37 @@ async function getNewestUser() {
 
 //2. GET /get-all-users
 
-//3. POST /add-one-user
-async function addOneUser(name, company_name, email, address, bio) {
-  await db.query(
-    "INSERT INTO users (name, category, can_fly, lives_in) VALUES ($1, $2, $3, $4)",
-    [name, country_name, email, bio]
-  );
-}
-
 //-------------------------------------
 //📊 Inventory ~
 //-------------------------------------
+
+//3. GET /get-food-by/:category
+//we'll have to define what category means (which is column names)
+//send a SQL query check (either or only)
+
+//4 is a stech goal: (you'll haev to pass through a request body)
+//4. GET /get-food-by/category
+//seperate aprameter by sepereate dynamic parameters
+
+//3. POST /add-one-user
+// async function addOneUser(name, company_name, email, address, bio) {
+//   await db.query(
+//     "INSERT INTO users (name, category, can_fly, lives_in) VALUES ($1, $2, $3, $4)",
+//     [name, country_name, email, bio]
+//   );
+// }
 
 //1. GET /get-all-pantry-items
 
 //2. GET /get-pantry-items
 
-//3. GET /get-pantry-items
+//3. GET /get-pantry-items/:index
 
 //4. POST /post-one-pantry-item
 
 //5. POST /post-remove-one-pantry-item
+
+//6.
 
 //-------------------------------------
 //📊 Item COUNTS ~
@@ -86,23 +92,23 @@ API Endpoints
 
 // 1. GET /get-newest-user
 
-app.get("/get-newest-user", async (req, res) => {
-  const newestUser = await getNewestUser();
-  res.json(newestUser);
-});
+// app.get("/get-newest-user", async (req, res) => {
+//   const newestUser = await getNewestUser();
+//   res.json(newestUser);
+// });
 
 //2. GET /get-all-users
-app.get("/get-all-users", async (req, res) => {
-  const allUsers = await getAllUsers();
-  res.json(allUsers);
-});
+// app.get("/get-all-users", async (req, res) => {
+//   const allUsers = await getAllUsers();
+//   res.json(allUsers);
+// });
 
 //3. POST /add-one-user
-app.post("/add-one-user", async (req, res) => {
-  const { name, country_name, email, bio } = req.body;
-  await addOneUser(name, country_name, email, bio);
-  res.send(`Success! A User was added.`);
-});
+// app.post("/add-one-user", async (req, res) => {
+//   const { name, country_name, email, bio } = req.body;
+//   await addOneUser(name, country_name, email, bio);
+//   res.send(`Success! A User was added.`);
+// });
 
 ///-------------------------------------
 //📊 Inventory ~
