@@ -27,7 +27,9 @@ export function Navbar() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/about-page" element={<About/>} />
+        <Route path="/about-page" element={<About/>} />
         <Route path="/food-bank-inventory" element={<InventoryPage/>} />
+        <Route path="/contact-us" element={<Contact/>} />
         <Route path="/contact-us" element={<Contact/>} />
         </Routes>
       </div>
