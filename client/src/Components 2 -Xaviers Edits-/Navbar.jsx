@@ -1,6 +1,7 @@
 import react from "react";
 
 export function Navbar() {
+  //Whoops
     return (
         <>
         <div className='foodHeader'>
