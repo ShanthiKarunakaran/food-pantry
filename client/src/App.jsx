@@ -1,7 +1,13 @@
 // /src/App.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Home from "./Pages/Home";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+//import { useState, useEffect } from "react";
+
+
+
+
 // import './style.css'; // Keep this! Global styling
 
 // --- Commented out old project imports to fix the error ---
@@ -12,23 +18,21 @@ import Home from "./Pages/Home";
 // --- End commented out section ---
 
 
-function App() {
+
+//import SavedCountries from "./Pages/SavedCountries.jsx";
+// import localData from "../../localData.js";
+
+
+export default function App() {
   return (
     // The App component renders your Home component
     // If you had a Router here, you would temporarily comment it out too.
     <Home />
   );
-import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import Home from "./Pages/Home.jsx";
-//import SavedCountries from "./Pages/SavedCountries.jsx";
-// import localData from "../../localData.js";
-import React, { useState, useEffect } from "react";
-
-function App() {
 
 }
 
-export default App;
+//export default App;
 
 
 
