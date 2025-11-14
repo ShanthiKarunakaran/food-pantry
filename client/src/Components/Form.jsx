@@ -80,7 +80,22 @@ function Form() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //     if (!validateForm()) return;
+
+  //     const payload = {
+  //       ...formValues,
+  //       foodItemTypes: { ...foodItemTypes },
+  //     };
+
+  //     console.log("Sign up data:", payload);
+
+  //     setFormValues(initialFormValues);
+  //     setFoodItemTypes(initialFoodItems);
+  //     setErrors({});
+  //   };
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validateForm()) return;
 
@@ -89,11 +104,28 @@ function Form() {
       foodItemTypes: { ...foodItemTypes },
     };
 
-    console.log("Sign up data:", payload);
+    try {
+      const response = await fetch("/api/get-all-food-banks”)", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    setFormValues(initialFormValues);
-    setFoodItemTypes(initialFoodItems);
-    setErrors({});
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data = await response.json();
+      console.log("Saved organization:", data);
+
+      setFormValues(initialFormValues);
+      setFoodItemTypes(initialFoodItems);
+      setErrors({});
+    } catch (error) {
+      console.error("Error saving organization:", error);
+    }
   };
 
   return (

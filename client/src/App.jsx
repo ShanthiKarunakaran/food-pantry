@@ -1,17 +1,12 @@
-import Header from "./Components/Header";
-//The routes are in the navbar in a component
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+import "./App.css";
+import Form from "./Components/Form";
 
+import React, { useState, useEffect } from "react";
+import Home from "./Pages/Home";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 
 export default function App() {
-  return (
-    <>
-      < Header navbarSpot={<Navbar/>}/>
-      <Footer />
-      <Form />
-    </>
-  );
+  return <Home />;
 }
 
 //export default App;
