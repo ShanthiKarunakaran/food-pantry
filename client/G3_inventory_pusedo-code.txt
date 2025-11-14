@@ -11,7 +11,7 @@ Xaviers Pseudo-code:
 -
 
 * make footer 
--Foote rhas some copy-rights
+-Footer has some copy-rights
 -Need to add logo
 
 -Outline
