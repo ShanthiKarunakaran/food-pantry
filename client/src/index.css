@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 
-:root {
+/*:root {
   font-family: nunito-sans;
   line-height: 1.5;
   font-weight: 400;
 }
 
-/*below needs to be update with styles */
+
 body {
   color: #111517;
   background-color: #fafafa;
@@ -15,4 +15,109 @@ body {
   margin: 0 auto;
   padding: 2rem 1.25rem;
   background: #f5f5f5;
+}*/
+
+
+/*Shanthi: adding global themes,colors and typography */
+/* index.css or App.css */
+
+/* 1. Theme tokens from your palette */
+:root {
+  --color-primary: #3c6e91;   /* UCLA Blue */
+  --color-accent-green: #88a550; /* Asparagus */
+  --color-accent-yellow: #f2c14e; /* Saffron */
+  --color-bg: #fff8e8;        /* Cosmic latte */
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;      /* Onyx */
+  --color-muted: #6b7280;
+
+  --radius-card: 8px;
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. Global typography + background */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Headings use Bebas Neue */
+h1,
+h2,
+h3 {
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  letter-spacing: 0.06em;
+}
+
+/* 3. Utility classes for layout */
+
+/* Main page wrapper (Home) */
+.page {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* Section that holds search + filters */
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 900px;
+  margin-bottom: 1rem;
+}
+
+/* Primary button */
+.btn-primary {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Card (for FoodPantryCard) */
+.pantry-card {
+  border-radius: var(--radius-card);
+  background-color: var(--color-surface);
+  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow-soft);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.pantry-card__title {
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.pantry-card__pill {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background-color: var(--color-accent-yellow);
+  text-transform: uppercase;
+}
+
+.pantry-card__distance {
+  font-size: 0.7rem;
+  color: var(--color-muted);
 }

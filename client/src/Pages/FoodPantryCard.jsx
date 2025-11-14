@@ -36,25 +36,12 @@ export default function FoodPantryCard({ pantry }) {
 
   return (
     <article
-      style={{
-        border: "1px solid #e5e7eb",
-        borderRadius: "8px",
-        backgroundColor: "white",
-        padding: "0.75rem 1rem",
-        boxShadow: "0 1px 2px rgba(0,0,0,0.03)",
-        display: "flex",
-        justifyContent: "space-between",
-        gap: "0.75rem",
-      }}
+      className="pantry-card"
     >
       {/* Left section: name, location, description, contact */}
       <div style={{ flex: 1 }}>
         <h2
-          style={{
-            fontSize: "0.95rem",
-            fontWeight: 600,
-            marginBottom: "0.25rem",
-          }}
+          className="pantry-card__title"
         >
           {displayName}
         </h2>
@@ -136,23 +123,14 @@ export default function FoodPantryCard({ pantry }) {
         }}
       >
         <span
-          style={{
-            fontSize: "0.65rem",
-            padding: "0.1rem 0.5rem",
-            borderRadius: "999px",
-            backgroundColor: "#f3f4f6",
-            textTransform: "uppercase",
-          }}
+          className="pantry-card__title"
         >
           {type || "foodbank"}
         </span>
 
         {distanceLabel && (
           <span
-            style={{
-              fontSize: "0.7rem",
-              color: "#6b7280",
-            }}
+            className="pantry-card__distance"
           >
             {distanceLabel}
           </span>
