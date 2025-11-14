@@ -7,6 +7,8 @@ const initialFormValues = {
   userPhoneNumber: "",
   organizationName: "",
   organizationWebsite: "",
+  organizationHours: "",
+  organizationBio: "",
   foodBankName: "",
   foodBankAddressLineOne: "",
   foodBankCity: "",
@@ -63,6 +65,8 @@ function Form() {
       newErrors.userPhoneNumber = "Phone number is required.";
     if (!formValues.organizationName.trim())
       newErrors.organizationName = "Organization name is required.";
+    if (!formValues.organizationHours.trim())
+      newErrors.organizationHours = "Hours are required.";
     if (!formValues.foodBankName.trim())
       newErrors.foodBankName = "Food bank name is required.";
     if (!formValues.foodBankAddressLineOne.trim())
@@ -159,6 +163,31 @@ function Form() {
           value={formValues.organizationWebsite}
           onChange={handleInputChange}
           placeholder="https://example.org"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="organizationHoursInput">Hours of Operation</label>
+        <input
+          id="organizationHoursInput"
+          name="organizationHours"
+          type="text"
+          value={formValues.organizationHours}
+          onChange={handleInputChange}
+          placeholder="Mon–Fri 9am–5pm"
+        />
+        {errors.organizationHours && <p>{errors.organizationHours}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="organizationBioInput">Organization Bio</label>
+        <textarea
+          id="organizationBioInput"
+          name="organizationBio"
+          value={formValues.organizationBio}
+          onChange={handleInputChange}
+          placeholder="Brief description of your organization"
+          rows={3}
         />
       </div>
 
