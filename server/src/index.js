@@ -34,20 +34,20 @@ Helper Functions (Test them in postman)
 //📊 Users (Food Banks)
 //-------------------------------------
 
-// 1. GET /get-newest-food-bank
+//1. GET /get-all-food-banks
+async function getAllFoodBanks() {
+  const data = await db.query("SELECT * FROM food_banks ORDER BY id ASC");
+  return data.rows;
+}
+
+// 2. GET /get-newest-food-bank
 async function getNewestFoodBank() {
   // db.query() lets us query the SQL database
   // It takes in one parameter: a SQL query!
   const data = await db.query(
-    "SELECT * FROM food_banks ORDER BY user_id DESC LIMIT $1"
+    "SELECT * FROM food_banks ORDER BY id DESC LIMIT 1"
   );
   return data.rows; // we have to use dot notation to get value of the rows property from the data object
-}
-
-//2. GET /get-all-food-banks
-async function getAllFoodBanks() {
-  const data = await db.query("SELECT * FROM food_banks ORDER BY id ASC");
-  return data.rows;
 }
 
 //3. POST /add-one-food-bank
@@ -68,7 +68,7 @@ async function getAllPantryItems() {
   return data.rows;
 }
 
-//2. GET /get-pantry-items/:category
+//2. GET /get-pantry-items-by/:category
 async function getPantryItemByCategory(category) {
   console.log(category);
   console.log(`SELECT * FROM items WHERE ${category} = TRUE`);
@@ -91,43 +91,45 @@ async function getPantryItemByCategory(category) {
 // ];
 
 //3. POST /add-one-pantry-item
-app.post("/add-one-pantry-item", async (req, res) => {
-  const {
-    food_bank_id,
-    name,
-    isproduce,
-    isperishable,
-    isvegetarian,
-    isvegan,
-    isketo,
-    isglutenfree,
-    ishalal,
-    iskosher,
-    isbabyfood,
-  } = req.body;
-  await addOnePantryItem(
-    food_bank_id,
-    name,
-    isproduce,
-    isperishable,
-    isvegetarian,
-    isvegan,
-    isketo,
-    isglutenfree,
-    ishalal,
-    iskosher,
-    isbabyfood
+async function addOnePantryItem(
+  food_bank_id,
+  name,
+  isproduce,
+  isperishable,
+  isvegetarian,
+  isvegan,
+  isketo,
+  isglutenfree,
+  ishalal,
+  iskosher,
+  isbabyfood
+) {
+  await db.query(
+    "INSERT INTO items (food_bank_id, name, isproduce, isperishable, isvegetarian, isvegan, isketo,isglutenfree, ishalal, iskosher, isbabyfood) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+    [
+      food_bank_id,
+      name,
+      isproduce,
+      isperishable,
+      isvegetarian,
+      isvegan,
+      isketo,
+      isglutenfree,
+      ishalal,
+      iskosher,
+      isbabyfood,
+    ]
   );
-  res.send(`Success! Item was added.`);
-});
+}
 
-//4. POST /remove-one-pantry-item/:name
-app.post("/delete-one-pantry-item", async (req, res) => {
-  const name = req.params.name;
-  const deletedItem = await deleteOnePantryItem(name);
-
-  res.json(deletedItem);
-});
+//4. POST /remove-one-pantry-item/:id
+async function removeOnePantryItem(id) {
+  const removedItem = await db.query(
+    "DELETE FROM items WHERE id = $1 RETURNING *",
+    [id]
+  );
+  return removedItem.rows[0];
+}
 
 /*------------------------------------------------------
 API Endpoints
@@ -137,16 +139,16 @@ API Endpoints
 //📊 USERS (Food Banks)
 //-------------------------------------
 
-// 1. GET /get-newest-food-bank
-app.get("/get-newest-food-bank", async (req, res) => {
-  const newestFoodBank = await getNewestFoodBank();
-  res.json(newestFoodBank);
-});
-
-//2. GET /get-all-food-banks
+//1. GET /get-all-food-banks
 app.get("/get-all-food-banks", async (req, res) => {
   const allFoodBanks = await getAllFoodBanks();
   res.json(allFoodBanks);
+});
+
+//2. GET /get-newest-food-bank
+app.get("/get-newest-food-bank", async (req, res) => {
+  const newestFoodBank = await getNewestFoodBank();
+  res.json(newestFoodBank);
 });
 
 //3. POST /add-one-food-bank
@@ -206,10 +208,10 @@ app.post("/add-one-pantry-item", async (req, res) => {
   res.send(`Success! Pantry item was added.`);
 });
 
-//5. POST /post-remove-one-pantry-item/:name
-app.post("/remove-one-pantry-item/:name", async (req, res) => {
-  const name = req.params.name;
-  const deletedItem = await deleteOnePantryItem(name);
+//5. POST /remove-one-pantry-item/:id
+app.post("/remove-one-pantry-item/:id", async (req, res) => {
+  const id = req.params.id;
+  const removedItem = await removeOnePantryItem(id);
 
-  res.json(deletedItem);
+  res.json(removedItem);
 });
