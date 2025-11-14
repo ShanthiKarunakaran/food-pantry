@@ -1,4 +1,8 @@
 import react from "react";
+import Home from "../Pages/Home";
+import Home from "../Pages/About";
+import Home from "../Pages/Contact";
+import Home from "../Pages/InventoryPage";
 
 export function Navbar() {
   //Whoops
@@ -23,9 +27,9 @@ export function Navbar() {
       </nav>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/about-page" element={"Plaeholder for about section"} />
+        <Route path="/about-page" element={<About/>} />
         <Route path="/food-bank-inventory" element={<InventoryPage/>} />
-        <Route path="/contact-us" element={"Placeholder for contact page"} />
+        <Route path="/contact-us" element={<Contact/>} />
         </Routes>
     </div>
         </>
