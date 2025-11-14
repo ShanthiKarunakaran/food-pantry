@@ -63,16 +63,12 @@ async function addOneFoodBank(name, address, phone, hours, website, bio) {
 //-------------------------------------
 
 //1. GET /get-all-pantry-items
+async function getAllPantryItems() {
+  const data = await db.query("SELECT * FROM items ORDER BY id ASC");
+  return data.rows;
+}
 
-//2. GET /get-pantry-items
-
-//3. GET /get-pantry-items/:index
-
-//4. POST /post-one-pantry-item
-
-//5. POST /post-remove-one-pantry-item
-
-//1. GET /get-pantry-item-by/:category
+//2. GET /get-pantry-items/:category
 async function getPantryItemByCategory(category) {
   console.log(category);
   console.log(`SELECT * FROM items WHERE ${category} = TRUE`);
@@ -94,9 +90,44 @@ async function getPantryItemByCategory(category) {
 //   "isbabyfood",
 // ];
 
-//-------------------------------------
-//📊 Item COUNTS ~
-//-------------------------------------
+//3. POST /add-one-pantry-item
+app.post("/add-one-pantry-item", async (req, res) => {
+  const {
+    food_bank_id,
+    name,
+    isproduce,
+    isperishable,
+    isvegetarian,
+    isvegan,
+    isketo,
+    isglutenfree,
+    ishalal,
+    iskosher,
+    isbabyfood,
+  } = req.body;
+  await addOnePantryItem(
+    food_bank_id,
+    name,
+    isproduce,
+    isperishable,
+    isvegetarian,
+    isvegan,
+    isketo,
+    isglutenfree,
+    ishalal,
+    iskosher,
+    isbabyfood
+  );
+  res.send(`Success! Item was added.`);
+});
+
+//4. POST /remove-one-pantry-item/:name
+app.post("/delete-one-pantry-item", async (req, res) => {
+  const name = req.params.name;
+  const deletedItem = await deleteOnePantryItem(name);
+
+  res.json(deletedItem);
+});
 
 /*------------------------------------------------------
 API Endpoints
@@ -129,22 +160,56 @@ app.post("/add-one-food-bank", async (req, res) => {
 //📊 Inventory ~
 //-------------------------------------
 
-// 1. GET /get-pantry-items-by/:category
+// 1. GET /get-all-pantry-items
+app.get("/get-all-pantry-items", async (req, res) => {
+  const pantryItems = await getAllPantryItems();
+  res.json(pantryItems);
+});
+
+// 2. GET /get-pantry-items-by/:category
 app.get("/get-pantry-items-by/:category", async (req, res) => {
   let category = req.params.category;
   const food = await getPantryItemByCategory(category);
   res.json(food);
 });
-//1. GET /get-all-pantry-items
 
-//2. GET /get-pantry-items
+//3. POST /add-one-pantry-item
+app.post("/add-one-pantry-item", async (req, res) => {
+  const {
+    food_bank_id,
+    name,
+    isproduce,
+    isperishable,
+    isvegetarian,
+    isvegan,
+    isketo,
+    isglutenfree,
+    ishalal,
+    iskosher,
+    isbabyfood,
+  } = req.body;
 
-//3. GET /get-pantry-items
+  await addOnePantryItem(
+    food_bank_id,
+    name,
+    isproduce,
+    isperishable,
+    isvegetarian,
+    isvegan,
+    isketo,
+    isglutenfree,
+    ishalal,
+    iskosher,
+    isbabyfood
+  );
 
-//4. POST /post-one-pantry-item
+  res.send(`Success! Pantry item was added.`);
+});
 
-//5. POST /post-remove-one-pantry-item
+//5. POST /post-remove-one-pantry-item/:name
+app.post("/remove-one-pantry-item/:name", async (req, res) => {
+  const name = req.params.name;
+  const deletedItem = await deleteOnePantryItem(name);
 
-//-------------------------------------
-//📊 Item COUNTS ~
-//-------------------------------------
+  res.json(deletedItem);
+});
