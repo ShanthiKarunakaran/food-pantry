@@ -30,7 +30,7 @@ export function Navbar() {
         <Route path="/food-bank-inventory" element={<InventoryPage/>} />
         <Route path="/contact-us" element={<Contact/>} />
         </Routes>
-    </div>
-        </>
-        );
+      </div>
+    </>
+  );
 }
