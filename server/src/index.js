@@ -34,37 +34,33 @@ Helper Functions (Test them in postman)
 //📊 Users (Food Banks)
 //-------------------------------------
 
-// 1. GET /get-newest-user
-async function getNewestUser() {
+// 1. GET /get-newest-food-bank
+async function getNewestFoodBank() {
   // db.query() lets us query the SQL database
   // It takes in one parameter: a SQL query!
   const data = await db.query(
-    "SELECT * FROM users ORDER BY user_id DESC LIMIT $1"
+    "SELECT * FROM food_banks ORDER BY user_id DESC LIMIT $1"
   );
   return data.rows; // we have to use dot notation to get value of the rows property from the data object
 }
 
-//2. GET /get-all-users
+//2. GET /get-all-food-banks
+async function getAllFoodBanks() {
+  const data = await db.query("SELECT * FROM food_banks ORDER BY id ASC");
+  return data.rows;
+}
+
+//3. POST /add-one-food-bank
+async function addOneFoodBank(name, address, phone, hours, website, bio) {
+  await db.query(
+    "INSERT INTO animals (name, address, phone, hours, website, bio) VALUES ($1, $2, $3, $4, $5, $6)",
+    [name, address, phone, hours, website, bio]
+  );
+}
 
 //-------------------------------------
 //📊 Inventory ~
 //-------------------------------------
-
-//3. GET /get-food-by/:category
-//we'll have to define what category means (which is column names)
-//send a SQL query check (either or only)
-
-//4 is a stech goal: (you'll haev to pass through a request body)
-//4. GET /get-food-by/category
-//seperate aprameter by sepereate dynamic parameters
-
-//3. POST /add-one-user
-// async function addOneUser(name, company_name, email, address, bio) {
-//   await db.query(
-//     "INSERT INTO users (name, category, can_fly, lives_in) VALUES ($1, $2, $3, $4)",
-//     [name, country_name, email, bio]
-//   );
-// }
 
 //1. GET /get-all-pantry-items
 
@@ -76,7 +72,25 @@ async function getNewestUser() {
 
 //5. POST /post-remove-one-pantry-item
 
-//6.
+//1. GET /get-pantry-item-by/:category
+async function getPantryItemByCategory(category) {
+  // Allowed category columns to prevent SQL injection
+  // const allowedCategories = [
+  //   "isproduce",
+  //   "isperishable",
+  //   "isvegetarian",
+  //   "isvegan",
+  //   "isketo",
+  //   "isglutenfree",
+  //   "ishalal",
+  //   "iskosher",
+  //   "isbabyfood",
+  // ];
+  console.log(category);
+  console.log(`SELECT * FROM items WHERE ${category} = TRUE`);
+  const data = await db.query(`SELECT * FROM items WHERE ${category} = TRUE`);
+  return data.rows;
+}
 
 //-------------------------------------
 //📊 Item COUNTS ~
@@ -90,30 +104,35 @@ API Endpoints
 //📊 USERS (Food Banks)
 //-------------------------------------
 
-// 1. GET /get-newest-user
+// 1. GET /get-newest-food-bank
+app.get("/get-newest-food-bank", async (req, res) => {
+  const newestFoodBank = await getNewestFoodBank();
+  res.json(newestFoodBank);
+});
 
-// app.get("/get-newest-user", async (req, res) => {
-//   const newestUser = await getNewestUser();
-//   res.json(newestUser);
-// });
+//2. GET /get-all-food-banks
+app.get("/get-all-food-banks", async (req, res) => {
+  const allFoodBanks = await getAllFoodBanks();
+  res.json(allFoodBanks);
+});
 
-//2. GET /get-all-users
-// app.get("/get-all-users", async (req, res) => {
-//   const allUsers = await getAllUsers();
-//   res.json(allUsers);
-// });
-
-//3. POST /add-one-user
-// app.post("/add-one-user", async (req, res) => {
-//   const { name, country_name, email, bio } = req.body;
-//   await addOneUser(name, country_name, email, bio);
-//   res.send(`Success! A User was added.`);
-// });
+//3. POST /add-one-food-bank
+app.post("/add-one-food-bank", async (req, res) => {
+  const { name, address, phone, hours, website, bio } = req.body;
+  await addOneFoodBank(name, address, phone, hours, website, bio);
+  res.send(`Success! A Food Bank was added.`);
+});
 
 ///-------------------------------------
 //📊 Inventory ~
 //-------------------------------------
 
+// 1. GET /get-pantry-items-by/:category
+app.get("/get-pantry-items-by/:category", async (req, res) => {
+  let category = req.params.category;
+  const food = await getPantryItemByCategory(category);
+  res.json(food);
+});
 //1. GET /get-all-pantry-items
 
 //2. GET /get-pantry-items
