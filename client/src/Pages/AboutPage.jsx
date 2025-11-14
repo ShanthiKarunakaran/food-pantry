@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "../Components/Navbar";
 import { Header } from "../Components/Header";
 import { Footer } from "../Components/Footer";
+
 <div className="page-container">
   <Nav />
   <Header />

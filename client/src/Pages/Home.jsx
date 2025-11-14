@@ -50,8 +50,7 @@ export default function Home() {
       if (trimmedName) {
         const term = trimmedName.toLowerCase();
         filtered = apiData.filter((item) => {
-          const name =
-            (item.name || item.shelter_name || "").toLowerCase();
+          const name = (item.name || item.shelter_name || "").toLowerCase();
           return name.includes(term);
         });
       }
@@ -67,9 +66,7 @@ export default function Home() {
         setResults([]);
         setError(""); // no error, just empty results
       } else {
-        setError(
-          message || "Something went wrong while fetching data."
-        );
+        setError(message || "Something went wrong while fetching data.");
         setResults([]);
       }
     } finally {
@@ -102,10 +99,7 @@ export default function Home() {
             onFoodbankNameChange={setFoodbankName}
           />
 
-          <RegionFilter
-            stateCode={stateCode}
-            onStateChange={setStateCode}
-          />
+          <RegionFilter stateCode={stateCode} onStateChange={setStateCode} />
         </div>
 
         {/* Submit button */}
@@ -120,8 +114,7 @@ export default function Home() {
               isSubmitDisabled || isLoading ? "#9ca3af" : "#111827",
             color: "white",
             fontSize: "0.9rem",
-            cursor:
-              isSubmitDisabled || isLoading ? "not-allowed" : "pointer",
+            cursor: isSubmitDisabled || isLoading ? "not-allowed" : "pointer",
           }}
         >
           {isLoading ? "Searching..." : "Find food banks"}
@@ -198,214 +191,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-
-// import Header from '../Header.jsx'; // 1. COMMENT OUT THE HEADER IMPORT
-
-
-{/*import SearchBar from "./SearchBar.jsx";
-import FoodPantryCard from "./FoodPantryCard.jsx";
-
-
-const MOCK_FOOD_BANK_DATA = [
-  {
-    id: 1,
-    name: "Community Pantry Central",
-    address: "123 Main St, Anytown, CA 90001",
-    hours: "Mon-Fri",
-    region: "North",
-    dietary: ["Vegetarian", "Gluten-Free"],
-  },
-  {
-    id: 2,
-    name: "Eastside Food Assistance",
-    address: "456 Oak Ave, Anytown, CA 90002",
-    hours: "Tue-Sat",
-    region: "East",
-    dietary: ["Vegan", "Halal"],
-  },
-  {
-    id: 3,
-    name: "South End Family Services",
-    address: "789 Pine Ln, Anytown, CA 90003",
-    hours: "Wed & Fri",
-    region: "South",
-    dietary: ["Vegetarian"],
-  },
-  {
-    id: 4,
-    name: "Westside Family Center",
-    address: "990 Pine St, Anytown, CA 90004",
-    hours: "Mon-Sat",
-    region: "West",
-    dietary: ["Gluten-Free"],
-  },
-];
-
-
-function Home() {
- 
-  const [foodBanks, setFoodBanks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("All");
-  const [selectedDiet, setSelectedDiet] = useState("All");
-
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        setFoodBanks(MOCK_FOOD_BANK_DATA);
-      } catch (err) {
-        setError("Could not fetch data.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
- 
-  const getFilteredBanks = () => {
-    if (isLoading || error) return [];
-
-    let filtered = foodBanks;
-
-   
-    if (searchTerm) {
-      const lowerSearchTerm = searchTerm.toLowerCase();
-      filtered = filtered.filter(
-        (bank) =>
-          bank.name.toLowerCase().includes(lowerSearchTerm) ||
-          bank.address.toLowerCase().includes(lowerSearchTerm)
-      );
-    }
-
-
-    if (selectedRegion !== "All") {
-      filtered = filtered.filter((bank) => bank.region === selectedRegion);
-    }
-
-   
-    if (selectedDiet !== "All") {
-      filtered = filtered.filter((bank) => bank.dietary.includes(selectedDiet));
-    }
-
-    return filtered;
-  };
-
-  const finalBanks = getFilteredBanks();
-
-  
-  const renderContent = () => {
-    if (isLoading) {
-      return (
-        <p style={{ textAlign: "center", padding: "50px" }}>
-          Loading food bank data...
-        </p>
-      );
-    }
-    if (error) {
-
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import Form from "../Components/Form.jsx";
-
-export default function Home({ countries }) {
-  const [searchBar, setSearchBar] = useState("");
-  const [selectedRegionDropDown, setSelectedRegionDropDown] = useState("all");
-
-  let filteredCountries = countries || [];
-
-
-  if (searchBar) {
-   
-    filteredCountries = filteredCountries.filter((country) => {
-    
-      return country.name.common
-        .toLowerCase()
-        .includes(searchBar.toLowerCase());
-    });
-  }
-
-  
-  if (selectedRegionDropDown !== "all") {
-   
-    filteredCountries = filteredCountries.filter((country) => {
-      return (
-        <p style={{ color: "red", textAlign: "center", padding: "50px" }}>
-          Error loading data: {error}
-        </p>
-      );
-    }
-    if (finalBanks.length === 0) {
-      return (
-        <p style={{ textAlign: "center", padding: "50px" }}>
-          No food banks found matching your criteria.
-        </p>
-      );
-    }
-
-    return (
-      <section className="food-bank-list">
-        {finalBanks.map((bank) => (
-          <FoodPantryCard key={bank.id} bank={bank} />
-        ))}
-      </section>
-    );
-  };
-
-  return (
-    <>
-     
-      <main className="container">
-        <SearchBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          selectedRegion={selectedRegion}
-          setSelectedRegion={setSelectedRegion}
-          selectedDiet={selectedDiet}
-          setSelectedDiet={setSelectedDiet}
-        />
-
-        <hr />
-
-        {renderContent()}
-      </main>
-      <footer>
-        <p>&copy; 2025 Pantry</p>
-      </footer>
-      </div>
-      <div className="region-filter">
-        <select
-          value={selectedRegionDropDown}
-          onChange={(e) => setSelectedRegionDropDown(e.target.value)}
-        >
-          <option value="all">Filter by Region</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">Americas</option>
-          <option value="Antarctic">Antarctic</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
-      </div>
-
-      <div className="card-container">
-      
-        {filteredCountries.map((country) => (
-         
-          <CountryCard key={country.name?.common} country={country} />
-        ))}
-      </div>
-
-      <Form />
-    </>
-  );
-}
-
-export default Home;*/}

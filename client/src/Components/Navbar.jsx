@@ -30,6 +30,7 @@ export function Navbar() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-page" element={"Plaeholder for about section"} />
+          <Route path="/form" element={<FormPage />} />
           <Route path="/food-bank-inventory" element={<InventoryPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
