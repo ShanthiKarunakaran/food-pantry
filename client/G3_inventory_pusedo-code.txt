@@ -6,4 +6,25 @@ INVENTORY PAGE PSEUDO-CODE WORKSHEET
 FORM PAGE PSEUDO-CODE WORKSHEET 
 ------------------------------------- 
 
-Adding to the team 3
+Xaviers Pseudo-code:
+* make header
+-
+
+* make footer 
+-Foote rhas some copy-rights
+-Need to add logo
+
+-Outline
+* make nav bar 
+-Outline
+-Some links placed
+-Some links are unavailable at the moment
+
+* nav bar needs:  
+* Home page (logo),
+-Annotated it's placements
+
+* Food Bank profile about 
+* page, contact page 
+* make shell 
+
