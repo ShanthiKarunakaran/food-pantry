@@ -130,6 +130,8 @@ VALUES
 
 ---
 
+<!-- USE THIS POST TO UPLOAD A FOOD BANK -->
+
 ### 🔹 POST `/add-one-food-bank`
 
 **Description:** Adds a new food bank to the database.
