@@ -17,18 +17,17 @@ body {
   background: #f5f5f5;
 }*/
 
-
 /*Shanthi: adding global themes,colors and typography */
 /* index.css or App.css */
 
 /* 1. Theme tokens from your palette */
 :root {
-  --color-primary: #3c6e91;   /* UCLA Blue */
+  --color-primary: #3c6e91; /* UCLA Blue */
   --color-accent-green: #88a550; /* Asparagus */
   --color-accent-yellow: #f2c14e; /* Saffron */
-  --color-bg: #fff8e8;        /* Cosmic latte */
+  --color-bg: #fff8e8; /* Cosmic latte */
   --color-surface: #ffffff;
-  --color-text: #3b3b3b;      /* Onyx */
+  --color-text: #3b3b3b; /* Onyx */
   --color-muted: #6b7280;
 
   --radius-card: 8px;
@@ -44,7 +43,8 @@ body {
 
 body {
   margin: 0;
-  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
