@@ -51,9 +51,18 @@ async function getNewestFoodBank() {
 }
 
 //3. POST /add-one-food-bank
-async function addOneFoodBank(name, address, phone, hours, website, bio) {
+async function addOneFoodBank(
+  name,
+  address,
+  phone,
+  hours,
+  website,
+  bio,
+  city,
+  state
+) {
   await db.query(
-    "INSERT INTO animals (name, address, phone, hours, website, bio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+    "INSERT INTO food_banks (name, address, phone, hours, website, bio, city, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
     [name, address, phone, hours, website, bio, city, state]
   );
 }
@@ -143,6 +152,42 @@ async function getAllFoodBanksByCategory(category) {
     food_banks.state
     FROM food_banks INNER JOIN items ON food_banks.id = items.food_bank_id WHERE items.${category} = TRUE`
   );
+  return data.rows;
+}
+
+//added for presentation, needs to be edited later
+//7. /get-all-food-banks-by-category/:category?city=&state=&name=
+async function getAllFoodBanksByCategoryCityState(category, city, state, name) {
+  let query = `
+    SELECT DISTINCT
+      food_banks.id,
+      food_banks.name,
+      food_banks.address,
+      food_banks.phone,
+      food_banks.hours,
+      food_banks.website,
+      food_banks.bio,
+      food_banks.city,
+      food_banks.state
+    FROM food_banks
+    INNER JOIN items
+    ON food_banks.id = items.food_bank_id
+    WHERE items.${category} = TRUE
+  `;
+
+  if (city) {
+    query += ` AND food_banks.city ILIKE '%${city}%'`;
+  }
+
+  if (state) {
+    query += ` AND food_banks.state ILIKE '%${state}%'`;
+  }
+
+  if (name) {
+    query += ` AND food_banks.name ILIKE '%${name}%'`;
+  }
+
+  const data = await db.query(query);
   return data.rows;
 }
 
@@ -238,3 +283,22 @@ app.get("/get-all-food-banks-by-category/:category", async (req, res) => {
   const food = await getAllFoodBanksByCategory(category);
   res.json(food);
 });
+
+//7. /get-all-food-banks-by-category/:category?city=&state=&name=
+app.get(
+  "/get-all-food-banks-by-category-city-state/:category",
+  async (req, res) => {
+    let category = req.params.category;
+    let city = req.query.city;
+    let state = req.query.state;
+    let name = req.query.name;
+
+    const food = await getAllFoodBanksByCategoryCityState(
+      category,
+      city,
+      state,
+      name
+    );
+    res.json(food);
+  }
+);

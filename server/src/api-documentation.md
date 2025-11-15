@@ -8,7 +8,7 @@ Base URL: `http://localhost:3001`
 | ------------ | ------ | --------------------------- | -------------------------------------------- |
 | `food_banks` | GET    | /get-all-food-banks         | Retrieves all food banks.                    |
 | `food_banks` | GET    | /get-newest-food-bank/      | Retrieves most recently added food bank.     |
-| `food_banks` | GET    | /add-one-food-bank          | Adds one food bank.                          |
+| `food_banks` | POST   | /add-one-food-bank          | Adds one food bank.                          |
 | `items`      | GET    | /get-all-pantry-items       | Retrieves all pantry items.                  |
 | `items`      | POST   | /get-pantry-items/:category | Retrieves all pantry items who fit category. |
 | `items`      | POST   | /add-one-pantry-item        | Adds a new pantry item to the database.      |
@@ -48,17 +48,17 @@ The `items` SQL table was created with the following structure:
 ```sql
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  food_bank_id INTEGER NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE,
-  isproduce BOOLEAN SET DEFAULT FALSE,
-  isperishable BOOLEAN SET DEFAULT FALSE,
-  isvegetarian BOOLEAN SET DEFAULT FALSE,
-  isvegan BOOLEAN SET DEFAULT FALSE,
-  isketo BOOLEAN SET DEFAULT FALSE,
-  isglutenfree BOOLEAN SET DEFAULT FALSE,
-  ishalal BOOLEAN SET DEFAULT FALSE,
-  iskosher BOOLEAN SET DEFAULT FALSE,
-  isbabyfood BOOLEAN SET DEFAULT FALSE
+  food_bank_id INTEGER NOT NULL,
+  isproduce BOOLEAN DEFAULT FALSE,
+  isperishable BOOLEAN DEFAULT FALSE,
+  isvegetarian BOOLEAN DEFAULT FALSE,
+  isvegan BOOLEAN DEFAULT FALSE,
+  isketo BOOLEAN DEFAULT FALSE,
+  isglutenfree BOOLEAN DEFAULT FALSE,
+  ishalal BOOLEAN DEFAULT FALSE,
+  iskosher BOOLEAN DEFAULT FALSE,
+  isbabyfood BOOLEAN DEFAULT FALSE
 );
 ```
 
@@ -104,8 +104,9 @@ VALUES
     "phone": "1239876543",
     "hours": "Saturday 7-4",
     "website": "foodbank2.com",
-    "bio": "Food bank bio"
-    "city": "San Francisco", "CA"
+    "bio": "Food bank bio",
+    "city": "San Francisco",
+    "state": "CA"
   }
 ]
 ```
@@ -129,7 +130,7 @@ VALUES
   "phone": "1239876543",
   "hours": "Saturday 7-4",
   "website": "foodbank2.com",
-  "bio": "Food bank bio"
+  "bio": "Food bank bio",
   "city": "San Francisco",
   "state": "CA"
 }
@@ -148,16 +149,18 @@ VALUES
 
 **Example Request Body:**
 
-````json
+```json
 {
-  "name": "Tiger",
   "name": "Food Bank 3",
   "address": "789 Food Bank Road",
   "phone": "1239990000",
   "hours": "Saturday 9-5",
   "website": "foodbankthree.com",
-  "bio": "Hello, world!"
+  "bio": "Hello, world!",
+  "city": "San Diego",
+  "state": "CA"
 }
+```
 
 ---
 
@@ -174,34 +177,35 @@ VALUES
 
 ```json
 [
-    {
-        "id": 1,
-        "food_bank_id": "1",
-        "name": "apple",
-        "isproduce": true,
-        "isperishable": true,
-        "isvegetarian": true,
-        "isvegan": true,
-        "isketo": true,
-        "isglutenfree": true,
-        "ishalal": true,
-        "iskosher": true,
-        "isbabyfood": false
-    },
-    {
-        "id": 2,
-        "food_bank_id": "2",
-        "name": "spinach",
-        "isproduce": true,
-        "isperishable": true,
-        "isvegetarian": true,
-        "isvegan": true,
-        "isketo": true,
-        "isglutenfree": true,
-        "ishalal": true,
-        "iskosher": true,
-        "isbabyfood": false
-    }]
+  {
+    "id": 1,
+    "food_bank_id": 1,
+    "name": "apple",
+    "isproduce": true,
+    "isperishable": true,
+    "isvegetarian": true,
+    "isvegan": true,
+    "isketo": true,
+    "isglutenfree": true,
+    "ishalal": true,
+    "iskosher": true,
+    "isbabyfood": false
+  },
+  {
+    "id": 2,
+    "food_bank_id": 2,
+    "name": "spinach",
+    "isproduce": true,
+    "isperishable": true,
+    "isvegetarian": true,
+    "isvegan": true,
+    "isketo": true,
+    "isglutenfree": true,
+    "ishalal": true,
+    "iskosher": true,
+    "isbabyfood": false
+  }
+]
 ```
 
 ### 🔹 GET `/get-pantry-items-by/:category`
@@ -215,37 +219,36 @@ VALUES
 
 ```json
 [
-    {
-        "id": 1,
-        "food_bank_id": "1",
-        "name": "apple",
-        "isproduce": true,
-        "isperishable": true,
-        "isvegetarian": true,
-        "isvegan": true,
-        "isketo": true,
-        "isglutenfree": true,
-        "ishalal": true,
-        "iskosher": true,
-        "isbabyfood": false
-    },
-    {
-        "id": 2,
-        "food_bank_id": "2",
-        "name": "spinach",
-        "isproduce": true,
-        "isperishable": true,
-        "isvegetarian": true,
-        "isvegan": true,
-        "isketo": true,
-        "isglutenfree": true,
-        "ishalal": true,
-        "iskosher": true,
-        "isbabyfood": false
-    }
+  {
+    "id": 1,
+    "food_bank_id": 1,
+    "name": "apple",
+    "isproduce": true,
+    "isperishable": true,
+    "isvegetarian": true,
+    "isvegan": true,
+    "isketo": true,
+    "isglutenfree": true,
+    "ishalal": true,
+    "iskosher": true,
+    "isbabyfood": false
+  },
+  {
+    "id": 2,
+    "food_bank_id": 2,
+    "name": "spinach",
+    "isproduce": true,
+    "isperishable": true,
+    "isvegetarian": true,
+    "isvegan": true,
+    "isketo": true,
+    "isglutenfree": true,
+    "ishalal": true,
+    "iskosher": true,
+    "isbabyfood": false
+  }
 ]
-
-````
+```
 
 ### 🔹 POST `/add-one-pantry-item`
 
@@ -312,7 +315,7 @@ Success! Pantry item was added.
 
 ### 🔹 GET `/get-all-food-banks-by-category/:category`
 
-**Description:** Retrieves all pantry items that fit into the category.
+**Description:** Retrieves all food banks that have items matching the category.
 
 **Example Request URL:**
 `GET http://localhost:3001/get-all-food-banks-by-category/:category`
