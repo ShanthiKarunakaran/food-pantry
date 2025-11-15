@@ -70,8 +70,6 @@ async function getAllPantryItems() {
 
 //2. GET /get-pantry-items-by/:category
 async function getPantryItemByCategory(category) {
-  console.log(category);
-  console.log(`SELECT * FROM items WHERE ${category} = TRUE`);
   const data = await db.query(`SELECT * FROM items WHERE ${category} = TRUE`);
   return data.rows;
 }
@@ -129,6 +127,14 @@ async function removeOnePantryItem(id) {
     [id]
   );
   return removedItem.rows[0];
+}
+
+//5. GET /get-all-food-banks-by-category/:category
+async function getAllFoodBanksByCategory(category) {
+  const data = await db.query(
+    `SELECT * FROM food_banks LEFT JOIN items ON food_banks.id = items.food_bank_id WHERE items.${category} = TRUE`
+  );
+  return data.rows;
 }
 
 /*------------------------------------------------------
@@ -214,4 +220,12 @@ app.post("/remove-one-pantry-item/:id", async (req, res) => {
   const removedItem = await removeOnePantryItem(id);
 
   res.json(removedItem);
+});
+
+//6. GET /get-all-food-banks-by-category/:category
+app.get("/get-all-food-banks-by-category/:category", async (req, res) => {
+  console.log(req.params.category);
+  let category = req.params.category;
+  const food = await getAllFoodBanksByCategory(category);
+  res.json(food);
 });
