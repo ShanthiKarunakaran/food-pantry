@@ -53,8 +53,8 @@ async function getNewestFoodBank() {
 //3. POST /add-one-food-bank
 async function addOneFoodBank(name, address, phone, hours, website, bio) {
   await db.query(
-    "INSERT INTO animals (name, address, phone, hours, website, bio) VALUES ($1, $2, $3, $4, $5, $6)",
-    [name, address, phone, hours, website, bio]
+    "INSERT INTO animals (name, address, phone, hours, website, bio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+    [name, address, phone, hours, website, bio, city, state]
   );
 }
 
@@ -132,7 +132,16 @@ async function removeOnePantryItem(id) {
 //5. GET /get-all-food-banks-by-category/:category
 async function getAllFoodBanksByCategory(category) {
   const data = await db.query(
-    `SELECT * FROM food_banks LEFT JOIN items ON food_banks.id = items.food_bank_id WHERE items.${category} = TRUE`
+    `SELECT 
+    food_banks.name,
+    food_banks.address,
+    food_banks.phone,
+    food_banks.hours,
+    food_banks.website,
+    food_banks.bio,
+    food_banks.city,
+    food_banks.state
+    FROM food_banks INNER JOIN items ON food_banks.id = items.food_bank_id WHERE items.${category} = TRUE`
   );
   return data.rows;
 }
@@ -159,8 +168,8 @@ app.get("/get-newest-food-bank", async (req, res) => {
 
 //3. POST /add-one-food-bank
 app.post("/add-one-food-bank", async (req, res) => {
-  const { name, address, phone, hours, website, bio } = req.body;
-  await addOneFoodBank(name, address, phone, hours, website, bio);
+  const { name, address, phone, hours, website, bio, city, state } = req.body;
+  await addOneFoodBank(name, address, phone, hours, website, bio, city, state);
   res.send(`Success! A Food Bank was added.`);
 });
 

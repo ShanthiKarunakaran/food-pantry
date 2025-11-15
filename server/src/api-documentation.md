@@ -28,17 +28,19 @@ CREATE TABLE food_banks (
   phone VARCHAR(15) NOT NULL,
   hours VARCHAR(15) NOT NULL,
   website VARCHAR(255) NOT NULL,
-  bio VARCHAR(500)
+  bio VARCHAR(500),
+  city VARCHAR(100),
+  state VARCHAR(50)
 );
 ```
 
 The table was seeded with sample data:
 
 ```sql
-INSERT INTO food_banks (name, address, phone,  hours, website, bio)
+INSERT INTO food_banks (name, address, phone,  hours, website, bio, city, state)
 VALUES
-  ('Food Bank 1', '123 First St', '1234567890', 'Tuesday 9-5', 'foodbank.com', 'Largest food bank in fake city'),
-  ('Food Bank 2', '456 Second St', '1239876543', 'Saturday 7-4', 'foodbank2.com', 'Food bank bio');
+  ('Food Bank 1', '123 First St', '1234567890', 'Tuesday 9-5', 'foodbank.com', 'Largest food bank in fake city', 'Los Angeles', 'CA'),
+  ('Food Bank 2', '456 Second St', '1239876543', 'Saturday 7-4', 'foodbank2.com', 'Food bank bio', 'San Francisco', 'CA');
 ```
 
 The `items` SQL table was created with the following structure:
@@ -91,7 +93,9 @@ VALUES
     "phone": "1234567890",
     "hours": "Tuesday 9-5",
     "website": "foodbank.com",
-    "bio": "Largest food bank in fake city"
+    "bio": "Largest food bank in fake city",
+    "city": "Los Angeles",
+    "state": "CA"
   },
   {
     "id": 2,
@@ -101,6 +105,7 @@ VALUES
     "hours": "Saturday 7-4",
     "website": "foodbank2.com",
     "bio": "Food bank bio"
+    "city": "San Francisco", "CA"
   }
 ]
 ```
@@ -125,6 +130,8 @@ VALUES
   "hours": "Saturday 7-4",
   "website": "foodbank2.com",
   "bio": "Food bank bio"
+  "city": "San Francisco",
+  "state": "CA"
 }
 ```
 
@@ -297,4 +304,40 @@ Success! Pantry item was added.
     "isbabyfood": false
 }
 
+```
+
+## Food Banks & Pantry Items
+
+### 🔹 GET `/get-all-food-banks-by-category/:category`
+
+**Description:** Retrieves all pantry items that fit into the category.
+
+**Example Request URL:**
+`GET http://localhost:3001/get-all-food-banks-by-category/:category`
+
+**Example Response:**
+
+```json
+[
+  {
+    "name": "Food Bank 1",
+    "address": "123 First St",
+    "phone": "1234567890",
+    "hours": "Tuesday 9-5",
+    "website": "foodbank.com",
+    "bio": "Largest food bank in fake city",
+    "city": "Los Angeles",
+    "state": "CA"
+  },
+  {
+    "name": "Food Bank 2",
+    "address": "456 Second St",
+    "phone": "1239876543",
+    "hours": "Saturday 7-4",
+    "website": "foodbank2.com",
+    "bio": "Food bank bio",
+    "city": "San Francisco",
+    "state": "CA"
+  }
+]
 ```
