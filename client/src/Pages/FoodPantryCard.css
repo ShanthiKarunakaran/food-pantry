@@ -1,0 +1,56 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+/* Outer card container */
+.pantry-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--color-muted);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  gap: 16px;
+  width: 100%;
+}
+
+/* Title styles */
+.pantry-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+/* Distance badge on right side */
+.pantry-card__distance {
+  background: var(--color-accent-yellow);
+  color: var(--color-text);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Contact links (phone, website) */
+.pantry-card a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+/* Link turns blue ONLY on hover */
+.pantry-card a:hover {
+  color: #1d4ed8; /* Tailwind “blue-700” — clean, accessible blue */
+}
+
+/* M*
