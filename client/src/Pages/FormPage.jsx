@@ -1,13 +1,8 @@
 import React from "react";
-import { Navbar } from "../Components/Navbar";
-import { Header } from "../Components/Header";
-import { Footer } from "../Components/Footer";
 
 export default function FormPage() {
   return (
     <div className="container">
-      <Navbar />
-      <Header />
       <body>
         <h1> Food Banks Sign Up Here! </h1>
         <div className="content-block image-box">
@@ -15,7 +10,7 @@ export default function FormPage() {
             src="client/public/images/pexels-fotios-photos-3978831.jpg"
             alt="Shelves stocked with specialized food items"
           />
-        </div>{" "}
+        </div>
         <h3>
           Food banks, sign up below to join our inventory program and support
           the movement to bring fresh, healthy food to those experiencing
@@ -27,7 +22,6 @@ export default function FormPage() {
         </h3>
         <Form />
       </body>
-      <Footer />
     </div>
   );
 }
