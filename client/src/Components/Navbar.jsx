@@ -16,7 +16,7 @@ export function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="/about-page">About Page</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
               <Link to="/form">
@@ -37,7 +37,7 @@ export function Navbar() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about-page" element={<About />} />
+          <Route path="/about" element={<About />} />
           <Route path="/form" element={<FormPage />} />
           <Route path="/food-bank-inventory" element={<InventoryPage />} />
           <Route path="/contact-us" element={<Contact />} />
