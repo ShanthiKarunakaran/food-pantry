@@ -1,27 +1,40 @@
-// client/src/DietFilter.jsx
-
 import React from "react";
 
-const DIET_OPTIONS = ["All", "Vegetarian", "Vegan", "Gluten-Free", "Halal"];
+// hard-coded diet options for now
+const DIET_OPTIONS = [
+  { value: "", label: "Any diet" },
+  { value: "vegetarian", label: "Vegetarian" },
+  { value: "vegan", label: "Vegan" },
+  { value: "keto", label: "Keto" },
+  { value: "glutenfree", label: "Gluten-free" },
+  { value: "halal", label: "Halal" },
+  { value: "kosher", label: "Kosher" },
+  { value: "babyfood", label: "Baby food" },
+];
 
-function DietFilter({ selectedDiet, setSelectedDiet }) {
-  const handleDietChange = (e) => {
-    setSelectedDiet(e.target.value);
-  };
-
+export default function DietFilter({ diet, onDietChange }) {
   return (
-    <select
-      className="diet-filter"
-      value={selectedDiet}
-      onChange={handleDietChange}
-    >
-      {DIET_OPTIONS.map((diet) => (
-        <option key={diet} value={diet}>
-          Filter by Diet: {diet}
-        </option>
-      ))}
-    </select>
+    <section className="diet-filter">
+      <h2>Dietary filter</h2>
+
+      <div className="form-field">
+        <label htmlFor="diet">Select dietary preference</label>
+        <select
+          id="diet"
+          value={diet}
+          onChange={(e) => onDietChange(e.target.value)}
+        >
+          {DIET_OPTIONS.map((opt) => (
+            <option key={opt.value || "any"} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        <p className="help-text">
+          We’ll use this to filter food banks that support this diet (where
+          available).
+        </p>
+      </div>
+    </section>
   );
 }
-
-export default DietFilter;
