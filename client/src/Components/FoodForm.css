@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
-* {
-  box-sizing: border-box;
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
 }
 
 body {
@@ -9,7 +15,6 @@ body {
   padding: 0;
   font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  background-color: #3b3b3b;
 }
 
 .signup-form {
@@ -17,10 +22,7 @@ body {
   width: 100%;
   margin: 2rem auto;
   padding: 1.75rem 1.9rem;
-  background-color: #fff8e8;
-  border-radius: 18px;
-  border: 3px solid #3c6e91;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -32,14 +34,7 @@ body {
   height: 5px;
   border-radius: 999px;
   margin: -0.65rem -0.65rem 0.9rem -0.65rem;
-  background: linear-gradient(
-    90deg,
-    #3c6e91,
-    #88a550,
-    #f2c14e,
-    #fff8e8,
-    #3b3b3b
-  );
+  background: linear-gradient(90deg, #3c6e91, #88a550, #f2c14e);
 }
 
 .signup-form label {

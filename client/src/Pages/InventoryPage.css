@@ -1,0 +1,156 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+/* OUTER WRAPPER */
+.inventory-wrapper {
+  background-color: var(--color-bg);
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
+}
+
+/* INNER TWO COLUMN LAYOUT */
+.inventory-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 22px;
+  border-bottom: 4px solid var(--color-accent-yellow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 30px rgba(242, 193, 78, 0.15); /* soft saffron glow */
+}
+
+/* LEFT */
+.inventory-left {
+  flex: 1.2;
+  margin: 2rem;
+}
+
+.inventory-title {
+  font-size: 2rem;
+  margin: 0 0 16px;
+  color: var(--color-primary);
+}
+
+.inventory-info p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+p {
+  padding: 0.5rem;
+}
+.inventory-info a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.inventory-info a:hover {
+  color: var(--color-accent-green);
+}
+
+/* RIGHT SIDE IMAGE CARD */
+.inventory-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.inventory-card {
+  position: relative;
+  background: #ffe1a8;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 22px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 30px rgba(242, 193, 78, 0.15); /* soft saffron glow */
+}
+
+/* CARD IMAGE */
+.inventory-image {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+}
+
+/* CARD FOOTER SECTION */
+.inventory-card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+.inventory-card-label {
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.inventory-card-name {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.inventory-card-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+
+/* BADGES */
+.inventory-badge {
+  position: absolute;
+  background: var(--color-surface);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.badge-top-left {
+  top: 18px;
+  left: -10px;
+}
+
+.badge-top-right {
+  top: 48px;
+  right: -10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .inventory-inner {
+    flex-direction: column;
+  }
+
+  .inventory-right {
+    order: -1;
+  }
+
+  .inventory-card {
+    max-width: 100%;
+  }
+}

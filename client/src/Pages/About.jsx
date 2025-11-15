@@ -78,23 +78,96 @@ export default function About() {
                 alt="Shelves stocked with specialized food items"
               />
             </div>
-            {/* Updated: aboutcard -> content-block */}
-            <div className="content-block team-section">
+          </div>
+          {/* Updated: aboutcard -> content-block */}
+          <div>
+            <div class="team-profiles">
               <h2>Our Dedicated Team and Contributions</h2>
-              <p>
+              <p classname="the-mission">
                 This mission is made possible by a compassionate team committed
                 to treating hunger as a complex health issue. Learn more about
                 the people driving our strategy and daily operations.
               </p>
-              <p>
-                [Detailed team member profiles and contributions to be inserted
-                here.]
-              </p>
+              <div class="team-member">
+                <h3>LaJoie (Project Manager & Technical Architect)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> Project Management, Technical
+                    Architecture, CSS Design.
+                  </li>
+                  <li>
+                    <strong>Page Deliverables:</strong> Inventory Page, Contact
+                    Page.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Shanthi (Front-End Developer)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> Front-End Development, Feature
+                    Implementation.
+                  </li>
+                  <li>
+                    <strong>Page Deliverables:</strong> Home Page, foundational
+                    filtering systems.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Rachel (Front-End Developer)</h3>
+                <ul>
+                  <li>
+                    <strong>Page Deliverables:</strong> Dedicated development of
+                    the Form Page.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Nicole (Back-End/Full-Stack Developer)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> Back-End Architecture and data logic.
+                  </li>
+                  <li>
+                    <strong>Page Deliverables:</strong> Inventory Page backend
+                    integration.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Xavier (UI/UX Developer)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> UI/UX Development, Core CSS Styling.
+                  </li>
+                  <li>
+                    <strong>Deliverables:</strong> Navbar, Header, Footer.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Tamara (Content Developer/Front-End)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> Content and Front-End Development.
+                  </li>
+                  <li>
+                    <strong>Page Deliverables:</strong> Home Page, About Page.
+                  </li>
+                </ul>
+              </div>
+              <div class="team-member">
+                <h3>Arciee (Lead Designer & Framework Specialist)</h3>
+                <ul>
+                  <li>
+                    <strong>Role:</strong> Overall Site Design and setting up
+                    the Development Framework.
+                  </li>
+                </ul>
+              </div>
             </div>
             {/* Call to Action */}
-            <p>
-              <a href="/contact">Get Involved Today</a>
-            </p>
           </div>
         </main>
       </div>

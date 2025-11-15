@@ -1,0 +1,108 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+/* Page layout */
+.contactmain {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* Contact header styles */
+.contactmain h1 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 5px;
+}
+
+.contactmain h2 {
+  font-size: 1.3rem;
+  color: var(--color-muted);
+  margin-bottom: 30px;
+}
+
+/* MAIN CARD — matches team cards + inventory cards */
+.contact-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  padding: 2.2rem 1.8rem;
+  border-radius: 14px;
+  border-left: 6px solid var(--color-accent-yellow);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  justify-content: center;
+}
+
+/* FORM INSIDE CARD */
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* INDIVIDUAL FORM GROUPS */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+/* INPUTS + TEXTAREA */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-muted);
+  font-size: 1rem;
+  background-color: var(--color-surface);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 0 2px rgba(136, 165, 80, 0.2);
+}
+
+/* BUTTON */
+.contact-submit {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.contact-submit:hover {
+  background-color: var(--color-accent-green);
+  transform: scale(0.97);
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .contact-card {
+    padding: 1.8rem 1.3rem;
+  }
+}
