@@ -46,7 +46,7 @@ The `items` SQL table was created with the following structure:
 ```sql
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  food_bank_id VARCHAR(5) NOT NULL,
+  food_bank_id INTEGER NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE,
   isproduce BOOLEAN SET DEFAULT FALSE,
   isperishable BOOLEAN SET DEFAULT FALSE,
