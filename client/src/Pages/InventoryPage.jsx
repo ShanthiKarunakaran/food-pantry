@@ -1,13 +1,8 @@
 import React from "react";
-import { Navbar } from "../Components/Navbar";
-import { Header } from "../Components/Header";
-import { Footer } from "../Components/Footer";
 
 export default function InventoryPage({ formData }) {
   return (
     <div className="container">
-      <Nav />
-      <Header />
       <h1>Food Bank Profile</h1>
 
       <div className="profile-box">
