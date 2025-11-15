@@ -1,0 +1,103 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+.food-pantry-chat-bubble-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  background-color: #88a550;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.food-pantry-chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 600px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 10000;
+}
+
+.food-pantry-chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #88a550;
+  color: white;
+  font-weight: 600;
+}
+
+.food-pantry-chat-close-button {
+  border: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.food-pantry-chat-messages {
+  flex: 1;
+  padding: 8px 12px;
+  overflow-y: auto;
+  background-color: #f9fafb;
+}
+
+.food-pantry-chat-message {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.food-pantry-chat-message-user {
+  text-align: right;
+}
+
+.food-pantry-chat-message-assistant {
+  text-align: left;
+}
+
+.food-pantry-chat-form {
+  display: flex;
+  border-top: 1px solid #e5e7eb;
+}
+
+.food-pantry-chat-input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.food-pantry-chat-send-button {
+  border: none;
+  padding: 8px 12px;
+  background-color: #88a550;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0.25rem;
+}
