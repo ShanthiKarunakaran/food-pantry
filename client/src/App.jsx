@@ -4,11 +4,9 @@ import About from "./Pages/About.jsx";
 import FormPage from "./Pages/FormPage.jsx";
 import InventoryPage from "./Pages/InventoryPage.jsx";
 import Contact from "./Pages/Contact.jsx";
-
 import { Header } from "./Components/Header.jsx";
 import { Footer } from "./Components/Footer.jsx";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-
 export default function App() {
   return (
     <>
@@ -49,9 +47,7 @@ export default function App() {
           <Route path="/food-bank-inventory" element={<InventoryPage />} />
           <Route path="/contact-us" element={<Contact />} />
         </Routes>
-
         <Header />
-
         <Footer />
       </div>
     </>
