@@ -24,6 +24,14 @@
   font-size: 2rem;
   color: var(--color-primary);
   margin-bottom: 8px;
+  grid-column: 1 / -1;
+  background-color: var(--color-surface);
+  padding: 28px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 4px solid var(--color-accent-green);
+  text-align: center;
+  padding-top: none;
 }
 
 .container h3 {
@@ -31,6 +39,8 @@
   line-height: 1.6;
   font-weight: 400;
   color: var(--color-text);
+  padding: 0.0009rem 6rem;
+  text-align: center;
 }
 
 .content-block {

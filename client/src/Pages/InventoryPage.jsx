@@ -1,5 +1,6 @@
 import React from "react";
 import "./InventoryPage.css";
+
 export default function InventoryPage() {
   const loggedInFoodBank = {
     name: "Mama's Kitchen",
@@ -10,44 +11,37 @@ export default function InventoryPage() {
     bio: "Mamas Kitchen, a community-driven organization, believes that everyone is entitled to nutritious food. Their services improve the lives of women, men, and children.",
     city: "San Diego",
     state: "California",
-    image: "images/mamas-kitchen-profile.jpg",
+    image: "images/pexels-rdne-6646916.jpg",
   };
 
   return (
-    <div className="profile-page-container">
-      <div className="profile-card">
-        <div className="profile-header">
-          <div className="profile-header-text">
-            <h1>{loggedInFoodBank.name}</h1>
-            <p className="profile-subtitle">
-              Serving {loggedInFoodBank.city}, {loggedInFoodBank.state}
-            </p>
-          </div>
-          <div className="profile-avatar-wrapper">
-            <img
-              src="/images/pexels-rdne-6646916.jpg "
-              alt={`${loggedInFoodBank.name} logo`}
-              className="profile-avatar"
-            />
-          </div>
-        </div>
+    <section className="inventory-wrapper">
+      <div className="inventory-inner">
+        {/* LEFT SIDE */}
+        <div className="inventory-left">
+          <h1 className="inventory-title">Your Food Bank Profile</h1>
 
-        <div className="profile-meta-grid">
-          <p>
-            <span className="profile-label">Address</span>
-            <span className="profile-value">{loggedInFoodBank.address}</span>
-          </p>
-          <p>
-            <span className="profile-label">Phone</span>
-            <span className="profile-value">{loggedInFoodBank.phone}</span>
-          </p>
-          <p>
-            <span className="profile-label">Hours</span>
-            <span className="profile-value">{loggedInFoodBank.hours}</span>
-          </p>
-          <p>
-            <span className="profile-label">Website</span>
-            <span className="profile-value">
+          <div className="inventory-info">
+            <p>
+              <strong>Name:</strong> {loggedInFoodBank.name}
+            </p>
+            <p>
+              <strong>Address:</strong> {loggedInFoodBank.address}
+            </p>
+            <p>
+              <strong>City:</strong> {loggedInFoodBank.city}
+            </p>
+            <p>
+              <strong>State:</strong> {loggedInFoodBank.state}
+            </p>
+            <p>
+              <strong>Phone Number:</strong> {loggedInFoodBank.phone}
+            </p>
+            <p>
+              <strong>Hours:</strong> {loggedInFoodBank.hours}
+            </p>
+            <p>
+              <strong>Website:</strong>{" "}
               <a
                 href={loggedInFoodBank.website}
                 target="_blank"
@@ -55,15 +49,36 @@ export default function InventoryPage() {
               >
                 {loggedInFoodBank.website}
               </a>
-            </span>
-          </p>
+            </p>
+            <p>
+              <strong>Bio:</strong> {loggedInFoodBank.bio}
+            </p>
+          </div>
         </div>
-        {/* comment  */}
-        <div className="profile-bio">
-          <h2>Your Bio</h2>
-          <p>{loggedInFoodBank.bio}</p>
+
+        {/* RIGHT SIDE IMAGE CARD */}
+        <div className="inventory-right">
+          <div className="inventory-card">
+            <img
+              src={loggedInFoodBank.image}
+              alt="Food Bank"
+              className="inventory-image"
+            />
+
+            <div className="inventory-card-footer">
+              <div>
+                <p className="inventory-card-label">Food Bank</p>
+                <p className="inventory-card-name">{loggedInFoodBank.name}</p>
+              </div>
+              <p className="inventory-card-status">Profile Active</p>
+            </div>
+
+            {/* Optional floating badges */}
+            <div className="inventory-badge badge-top-left">🍎 Fresh Food</div>
+            <div className="inventory-badge badge-top-right">🌱 Healthy</div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

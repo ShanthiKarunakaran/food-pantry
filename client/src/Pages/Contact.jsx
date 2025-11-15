@@ -1,63 +1,60 @@
 import React from "react";
 import { Header } from "../Components/Header";
 import { Footer } from "../Components/Footer";
+import "./Contact.css";
 
 export default function Contact() {
   return (
-    <div className="container">
-      <Navbar />
-      <Header />
+    <>
+      <div className="container">
+        <Header />
 
-      <main className="contactmain">
-        <h1>Food Pantry Finder</h1>
-        <h2>Contact FoodPantry</h2>
+        <main className="contactmain">
+          <h1>Food Pantry Finder</h1>
+          <h2>Contact FoodPantry</h2>
 
-        <form className="parentfour">
-          <div className="name">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Asia"
-              required
-            />
+          <div className="contact-card">
+            <form className="contact-form">
+              <div className="form-group">
+                <label htmlFor="name">Name:</label>
+                <input type="text" id="name" placeholder="Asia" required />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Asia@gmail.com"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="phone">Phone Number:</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="123-456-789"
+                  maxLength="13"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="comment">Tell Us More!</label>
+                <textarea id="comment" rows="4"></textarea>
+              </div>
+
+              <button type="submit" className="contact-submit">
+                Submit
+              </button>
+            </form>
           </div>
+        </main>
 
-          <div className="email">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Asia@gmail.com"
-              required
-            />
-          </div>
-
-          <div className="phone">
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="123-456-789"
-              required
-              maxLength="13"
-            />
-          </div>
-
-          <label htmlFor="comment">Tell Us More!</label>
-          <br />
-          <textarea id="comment" name="comment" rows="4" cols="40"></textarea>
-          <br />
-          <br />
-
-          <button type="submit">Submit</button>
-        </form>
-      </main>
-
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }
