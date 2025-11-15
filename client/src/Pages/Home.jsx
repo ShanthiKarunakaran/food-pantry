@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import RegionFilter from "./RegionFilter";
 import DietFilter from "./DietFilter";
-
 import FoodPantryCard from "./FoodPantryCard";
 
-import { fetchFoodBanks_API } from "../api/foodBanks_API";
+// NEW import – use your own backend API instead of RapidAPI
+import { fetchFoodBanksFromSiteAPI } from "../api/siteAPI";
 
 export default function Home() {
   // Form state
   const [city, setCity] = useState("");
   const [foodbankName, setFoodbankName] = useState("");
   const [stateCode, setStateCode] = useState(""); // 2-letter code, e.g. "WA"
-  const [diet, setDiet] = useState(""); 
+  const [diet, setDiet] = useState("");
 
   // Data / status state
   const [results, setResults] = useState([]);
@@ -28,14 +28,6 @@ export default function Home() {
   // - state is selected
   const isSubmitDisabled = !trimmedCity || !stateCode;
 
-  // Soft check for "looks like a food bank"
-  const isFoodBankType = (typeValue) => {
-    const t = (typeValue || "").toLowerCase();
-    // Be forgiving: treat anything containing "food" as a foodbank
-    // (e.g. "Food Bank", "Food Pantry", "Food distribution")
-    return t.includes("food");
-  };
-
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -49,54 +41,25 @@ export default function Home() {
     setResults([]);
 
     try {
-      // 1. Call external API with required location fields
-      const apiData = await fetchFoodBanks_API({
+      // Call YOUR backend API (via siteAPI helper)
+      const apiData = await fetchFoodBanksFromSiteAPI({
         city: trimmedCity,
         state: stateCode,
-        type: "foodbank"
-        //diet: diet, // pass diet filter to API
+        foodbankName: trimmedName,
+        diet, // diet value from dropdown
       });
 
-      console.log("API sample record:", apiData[0]);
+      console.log("Site API data (length):", apiData.length);
+      console.log("Sample record:", apiData[0]);
 
-      console.log("RAW API DATA (length):", apiData.length);
-      console.log("RAW SAMPLE:", apiData[0]);
-
-      // 2. Keep only foodbank-like entries
-      let onlyFoodbanks = apiData.filter((item) => isFoodBankType(item.type));
-
-      // If our filter is too strict and removes everything,
-      // fall back to the original data so we don't show an
-      // empty page when there *are* results.
-      /*if (onlyFoodbanks.length === 0) {
-        onlyFoodbanks = apiData;
-      }*/
-
-      // 3. Optional name filter on top of that
-      if (trimmedName) {
-        const term = trimmedName.toLowerCase();
-        filtered = apiData.filter((item) => {
-          const name = (item.name || item.shelter_name || "").toLowerCase();
-          return name.includes(term);
-        });
-      }
-
-      //temp: for testing the API before any filter is applied, sho entire result
-      //setResults(apiData);
-      setResults(onlyFoodbanks);
+      // siteAPI already filters by city/state/name for now
+      setResults(apiData);
     } catch (err) {
       console.error(err);
 
-      // If API says "City not found", treat it as "no results",
-      // not as a scary red error.
-      const message = err.message || "";
-      if (message.includes("City not found")) {
-        setResults([]);
-        setError(""); // no error, just empty results
-      } else {
-        setError(message || "Something went wrong while fetching data.");
-        setResults([]);
-      }
+      const message = err.message || "Something went wrong while fetching data.";
+      setError(message);
+      setResults([]);
     } finally {
       setIsLoading(false);
     }
@@ -108,7 +71,7 @@ export default function Home() {
         Welcome to the FoodBank Home Page
       </h1>
 
-      {/* Main form: City (required), Foodbank name (optional), State (required) , dummy comment*/}
+      {/* Main form: City (required), Foodbank name (optional), State (required), Diet */}
       <form onSubmit={handleSubmit}>
         {/* Top row: search inputs (city + optional food bank name) */}
         <div
@@ -127,16 +90,10 @@ export default function Home() {
             onFoodbankNameChange={setFoodbankName}
           />
 
-          <RegionFilter
-            stateCode={stateCode}
-            onStateChange={setStateCode}
-          />
+          <RegionFilter stateCode={stateCode} onStateChange={setStateCode} />
 
-          {/* New “page-like” component for dietary filter */}
-         <DietFilter diet={diet} onDietChange={setDiet} />
-
-
-
+          {/* Dietary filter */}
+          <DietFilter diet={diet} onDietChange={setDiet} />
         </div>
 
         {/* Submit button */}
