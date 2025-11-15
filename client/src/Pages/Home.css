@@ -1,0 +1,176 @@
+/* Page wrapper */
+.page {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 18px;
+  border: 2px solid #d8dfc8; /* olive subtle border */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.home-banner {
+  display: flex;
+  flex-direction: column; /* stack title ABOVE video */
+  align-items: center; /* center both horizontally */
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  padding-bottom: 1rem; /* optional spacing below */
+}
+.home-banner h1 {
+  position: absolute; /* float over video */
+  top: 20px; /* adjust position */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* in front */
+  color: white; /* readable on video */
+  margin: 0;
+}
+
+.home-banner video {
+  width: 100%;
+  height: 250px; /* adjust height to taste */
+  object-fit: cover; /* crops the video instead of squishing */
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  margin-top: -10rem;
+}
+
+/* Page title */
+.page h1 {
+  color: #1a1a1a;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* Form layout */
+.page form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Fake golden divider like screenshot */
+.page form::before {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100px;
+  background-color: #f2c14e;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* All labels */
+.page form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Inputs + select styling */
+.page form input,
+.page form textarea,
+.page form select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input focus */
+.page form input:focus,
+.page form textarea:focus,
+.page form select:focus {
+  border-color: #88a550; /* asparagus green */
+  box-shadow: 0 0 0 3px rgba(136, 165, 80, 0.25);
+  outline: none;
+}
+
+/* Dietary filter box (yellowish bg like the reference) */
+.page .DietFilter,
+.page .diet-filter,
+.page div:has(.diet-select) {
+  background-color: #fff8e8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #f2e0b9;
+  margin-top: 0.5rem;
+}
+
+/* Top input group (SearchBar + RegionFilter + Diet filter) */
+.page form > div {
+  width: 100%;
+}
+
+/* Submit button like sample */
+.submit-btn[type="submit"] {
+  background-color: #88a550;
+  color: white;
+  font-weight: 600;
+  padding: 0.7rem 1.15rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.page form button[type="submit"]:hover:not([disabled]) {
+  background-color: #3c6e91;
+  transform: translateY(-1px);
+}
+
+.page form button[disabled] {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Results grid */
+.page > div[style*="grid"] {
+  margin-top: 2rem !important;
+}
+
+/* Error text alignment */
+.page p[style*="color: red"] {
+  text-align: left;
+}
+
+/* No results message */
+.page > p {
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* --- Responsive styles --- */
+@media (min-width: 700px) {
+  /* Two-column form layout like the screenshot */
+  .page form > div {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Dietary filter spans full width */
+  .page .DietFilter,
+  .page div:has(.diet-select) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 699px) {
+  .page {
+    padding: 1.5rem;
+  }
+}

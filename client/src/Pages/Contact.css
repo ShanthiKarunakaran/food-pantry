@@ -18,7 +18,8 @@
 .contactmain h1 {
   font-size: 2rem;
   color: var(--color-primary);
-  margin-bottom: 5px;
+  margin-bottom: 4rem;
+  margin-top: -5rem;
 }
 
 .contactmain h2 {

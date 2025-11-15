@@ -28,11 +28,12 @@ nav {
   list-style: none;
   display: flex;
   gap: 32px;
-  padding: 18px 32px;
+  padding: 5px 32px;
   background: var(--color-surface);
   border-radius: 22px;
   border-bottom: 4px solid var(--color-accent-yellow);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 30px rgba(242, 193, 78, 0.15); /* soft saffron glow */
+  align-items: center;
 }
 
 /* REMOVE DEFAULT UL SPACING */

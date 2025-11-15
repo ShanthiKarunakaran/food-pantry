@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar";
 import RegionFilter from "./RegionFilter";
 import DietFilter from "./DietFilter";
 import FoodPantryCard from "./FoodPantryCard";
+import "./Home.css";
 
 // NEW import – use your own backend API instead of RapidAPI
 import { fetchFoodBanksFromSiteAPI } from "../api/siteAPI";
@@ -57,7 +58,8 @@ export default function Home() {
     } catch (err) {
       console.error(err);
 
-      const message = err.message || "Something went wrong while fetching data.";
+      const message =
+        err.message || "Something went wrong while fetching data.";
       setError(message);
       setResults([]);
     } finally {
@@ -67,10 +69,12 @@ export default function Home() {
 
   return (
     <div className="page">
-      <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
-        Welcome to the FoodBank Home Page
-      </h1>
-
+      <div className="home-banner">
+        <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>
+          Find Your Nearest Food Pantry
+        </h1>
+        <video src="images/pasta_banner_video.mp4" autoPlay muted loop></video>
+      </div>
       {/* Main form: City (required), Foodbank name (optional), State (required), Diet */}
       <form onSubmit={handleSubmit}>
         {/* Top row: search inputs (city + optional food bank name) */}
@@ -98,6 +102,7 @@ export default function Home() {
 
         {/* Submit button */}
         <button
+          className="submit-btn"
           type="submit"
           disabled={isSubmitDisabled || isLoading}
           style={{

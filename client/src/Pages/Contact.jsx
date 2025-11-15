@@ -10,8 +10,7 @@ export default function Contact() {
         <Header />
 
         <main className="contactmain">
-          <h1>Food Pantry Finder</h1>
-          <h2>Contact FoodPantry</h2>
+          <h1>Contact Us</h1>
 
           <div className="contact-card">
             <form className="contact-form">
@@ -52,8 +51,6 @@ export default function Contact() {
             </form>
           </div>
         </main>
-
-        <Footer />
       </div>
     </>
   );

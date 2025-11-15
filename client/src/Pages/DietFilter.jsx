@@ -30,10 +30,6 @@ export default function DietFilter({ diet, onDietChange }) {
             </option>
           ))}
         </select>
-        <p className="help-text">
-          We’ll use this to filter food banks that support this diet (where
-          available).
-        </p>
       </div>
     </section>
   );

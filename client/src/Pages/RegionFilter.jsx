@@ -52,7 +52,7 @@ const STATES = [
   { code: "WA", name: "Washington" },
   { code: "WV", name: "West Virginia" },
   { code: "WI", name: "Wisconsin" },
-  { code: "WY", name: "Wyoming" }
+  { code: "WY", name: "Wyoming" },
 ];
 
 // RegionFilter: State dropdown (required)
@@ -77,7 +77,7 @@ export default function RegionFilter({ stateCode, onStateChange }) {
           borderRadius: "4px",
           border: "1px solid #d1d5db",
           fontSize: "0.9rem",
-          maxWidth: "300px"
+          maxWidth: "300px",
         }}
       >
         <option value="">Select a state</option>

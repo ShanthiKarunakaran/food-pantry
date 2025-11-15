@@ -14,6 +14,14 @@ export default function App() {
         <nav>
           <ul className="navBar">
             <li>
+              <img
+                className="navbar-logo"
+                style={{ height: "50px" }}
+                src="images/logo5.svg"
+                alt="Shelves stocked with specialized food items"
+              />
+            </li>
+            <li>
               <Link to="/">
                 <h2 style={{}}>Home</h2>
               </Link>
