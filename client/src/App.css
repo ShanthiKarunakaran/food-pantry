@@ -3,7 +3,12 @@ body {
   background-color: #fafafa;
   font-family: Nunito Sans;
 }
-image {
+.image-box {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 8px;
 }
 .button {
   background-color: #1f2535;
