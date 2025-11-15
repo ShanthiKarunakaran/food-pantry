@@ -156,7 +156,9 @@ VALUES
   "phone": "1239990000",
   "hours": "Saturday 9-5",
   "website": "foodbankthree.com",
-  "bio": "Hello, world!"
+  "bio": "Hello, world!",
+  "city": "San Diego",
+  "State": "California",
 }
 
 ---

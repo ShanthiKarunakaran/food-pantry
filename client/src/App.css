@@ -3,6 +3,63 @@ body {
   background-color: #fafafa;
   font-family: Nunito Sans;
 }
+
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+/* NAV WRAPPER */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background: var(--color-bg);
+}
+
+/* NAV BAR CONTAINER (matches mission banner) */
+.navBar {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  padding: 18px 32px;
+  background: var(--color-surface);
+  border-radius: 22px;
+  border-bottom: 4px solid var(--color-accent-yellow);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 30px rgba(242, 193, 78, 0.15); /* soft saffron glow */
+}
+
+/* REMOVE DEFAULT UL SPACING */
+.navBar li {
+  margin: 0;
+  padding: 0;
+}
+
+/* LINK STYLE */
+.navBar li a h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+/* Hover uses accent green for subtle emphasis */
+.navBar li a h2:hover {
+  color: var(--color-accent-green);
+}
+
+/* Make entire link clickable */
+.navBar li a {
+  text-decoration: none;
+}
+
 .image-box {
   width: 100%;
   overflow: hidden;

@@ -1,0 +1,133 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+/* Page wrapper */
+.profile-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+/* Card */
+.profile-card {
+  width: 100%;
+  max-width: 900px;
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 28px;
+  border-bottom: 5px solid var(--color-accent-yellow);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header section */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header-text h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+.profile-subtitle {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+/* Avatar */
+.profile-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 3px solid var(--color-accent-yellow);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* FLEX META SECTION */
+.profile-meta-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.profile-item {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Labels + values */
+.profile-label {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.profile-value {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.profile-value a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.profile-value a:hover {
+  color: var(--color-accent-green);
+}
+
+/* Bio Section */
+.profile-bio h2 {
+  margin-bottom: 6px;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+}
+
+.profile-bio p {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Mobile Flex Adjustments */
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-meta-flex {
+    flex-direction: column;
+  }
+}

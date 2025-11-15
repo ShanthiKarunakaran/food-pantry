@@ -1,0 +1,142 @@
+:root {
+  --color-primary: #3c6e91;
+  --color-accent-green: #88a550;
+  --color-accent-yellow: #f2c14e;
+  --color-bg: #fff8e8;
+  --color-surface: #ffffff;
+  --color-text: #3b3b3b;
+  --color-muted: #6b7280;
+}
+
+.page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding: 40px 20px;
+}
+
+.page-container main {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Layout grid */
+.mission-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mission statement hero block */
+.mission-statement {
+  grid-column: 1 / -1;
+  background-color: var(--color-surface);
+  padding: 28px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 4px solid var(--color-accent-yellow);
+  text-align: center;
+}
+
+.mission-statement h2 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  color: var(--color-primary);
+}
+
+.mission-statement p {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+/* Shared content card styling */
+.content-block {
+  background-color: var(--color-surface);
+  padding: 20px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Text boxes */
+.text-box h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.text-box p {
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Image blocks */
+.content-block.image-box {
+  padding: 0;
+  overflow: hidden;
+}
+
+.content-block.image-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+/* Team section spans full width */
+.team-section {
+  grid-column: 1 / -1;
+}
+
+.team-section h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.team-section p {
+  margin: 0.4rem 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+/* Call to action */
+.mission-grid > p:last-child {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.mission-grid > p:last-child a {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
+}
+
+/* Hover color still from your palette (accent green) */
+.mission-grid > p:last-child a:hover {
+  background-color: var(--color-accent-green);
+  color: var(--color-surface);
+  transform: scale(0.98);
+}
+
+/* Optional: CTA click state */
+.mission-grid > p:last-child a:active {
+  transform: scale(0.95);
+}
