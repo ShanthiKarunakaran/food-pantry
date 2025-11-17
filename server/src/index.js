@@ -302,3 +302,46 @@ app.get(
     res.json(food);
   }
 );
+
+// 8. POST /chat  (placeholder AI endpoint for the chat widget)
+import Groq from "groq-sdk";
+import dotenv from "dotenv";
+dotenv.config();
+
+const groqClient = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+app.post("/chat", async (request, response) => {
+  try {
+    const { userMessageText } = request.body;
+
+    if (!userMessageText) {
+      return response
+        .status(400)
+        .json({ error: "Missing userMessageText in request body" });
+    }
+
+    const aiReply = await groqClient.chat.completions.create({
+      model: "llama3-8b-8192",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a helpful assistant for a food pantry app. You help users understand dietary needs (gluten-free, vegan, halal, low-sugar, etc.) and give supportive wellness advice for people facing homelessness.",
+        },
+        {
+          role: "user",
+          content: userMessageText,
+        },
+      ],
+    });
+
+    const replyText =
+      aiReply.choices?.[0]?.message?.content ||
+      "I'm sorry, I couldn't generate a response.";
+
+    return response.json({ replyText });
+  } catch (error) {
+    console.error("Error in /chat endpoint:", error);
+    return response.status(500).json({ error: "Internal server error" });
+  }
+});

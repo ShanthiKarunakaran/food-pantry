@@ -5,6 +5,7 @@ import RegionFilter from "./RegionFilter";
 import DietFilter from "./DietFilter";
 import FoodPantryCard from "./FoodPantryCard";
 import "./Home.css";
+import AiChatBot from "../Components/AiChatBot.jsx";
 
 // NEW import – use your own backend API instead of RapidAPI
 import { fetchFoodBanksFromSiteAPI } from "../api/siteAPI";
@@ -153,6 +154,7 @@ export default function Home() {
             {trimmedName && ` with name containing “${trimmedName}”`}.
           </p>
         )}
+      <AiChatBot />
     </div>
   );
 }

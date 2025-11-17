@@ -92,12 +92,12 @@ export default function About() {
                 <h3>LaJoie (Project Manager & Technical Architect)</h3>
                 <ul>
                   <li>
-                    <strong>Role:</strong> Project Management, Technical
-                    Architecture, CSS Design.
+                    <strong>Role:</strong> Project Management, Project
+                    Framework, Technical Architecture, CSS Design.
                   </li>
                   <li>
                     <strong>Page Deliverables:</strong> Inventory Page, Contact
-                    Page.
+                    Page, login page, about page
                   </li>
                 </ul>
               </div>
@@ -105,12 +105,12 @@ export default function About() {
                 <h3>Shanthi (Front-End Developer)</h3>
                 <ul>
                   <li>
-                    <strong>Role:</strong> Front-End Development, Feature
-                    Implementation.
+                    <strong>Role:</strong> Front-End Architecture, Feature
+                    Implementation For Home Page.
                   </li>
                   <li>
-                    <strong>Page Deliverables:</strong> Home Page, foundational
-                    filtering systems.
+                    <strong>Page Deliverables:</strong> API refactoring, API
+                    linking, Home Page, foundational filtering systems.
                   </li>
                 </ul>
               </div>
@@ -134,6 +134,7 @@ export default function About() {
                     integration.
                   </li>
                 </ul>
+                {/* asdf */}
               </div>
               <div class="team-member">
                 <h3>Xavier (UI/UX Developer)</h3>
@@ -158,11 +159,11 @@ export default function About() {
                 </ul>
               </div>
               <div class="team-member">
-                <h3>Arciee (Lead Designer & Framework Specialist)</h3>
+                <h3>Arciee (Page Builder & Frame Constultant)</h3>
                 <ul>
                   <li>
-                    <strong>Role:</strong> Overall Site Design and setting up
-                    the Development Framework.
+                    <strong>Role:</strong> Built the Contact Page and cnosulted
+                    with Lajoie on the wire frames.
                   </li>
                 </ul>
               </div>
