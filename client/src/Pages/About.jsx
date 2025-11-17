@@ -97,7 +97,7 @@ export default function About() {
                   </li>
                   <li>
                     <strong>Page Deliverables:</strong> Inventory Page, Contact
-                    Page.
+                    Page, login page, about page
                   </li>
                 </ul>
               </div>
@@ -105,12 +105,12 @@ export default function About() {
                 <h3>Shanthi (Front-End Developer)</h3>
                 <ul>
                   <li>
-                    <strong>Role:</strong> Front-End Development, Feature
+                    <strong>Role:</strong> Front-End Architecture, Feature
                     Implementation For Home Page.
                   </li>
                   <li>
-                    <strong>Page Deliverables:</strong> Home Page, foundational
-                    filtering systems.
+                    <strong>Page Deliverables:</strong> API refactoring, API
+                    linking, Home Page, foundational filtering systems.
                   </li>
                 </ul>
               </div>
