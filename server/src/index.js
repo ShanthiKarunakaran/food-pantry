@@ -9,6 +9,10 @@ import express from "express";
 import pg from "pg"; // pg stands for PostgreSQL, for connecting to the database
 import config from "./config.js"; // importing the connection string to our database hosted on Neon
 
+//enable cors
+import cors from "cors";
+
+
 //connecting to our PostgreSQL database, or db for short
 const db = new pg.Pool({
   // new pg.Pool() creates a connection to the database
@@ -18,9 +22,15 @@ const db = new pg.Pool({
 
 const app = express(); // create an instance of the Express module, which gives us access to all of Express's functions, methods, useful superpowers
 
+app.use(cors());          // allow cross-origin requests (Netlify → Render)
+
 app.use(express.json()); // This server will receive and respond to requests with JSON data
 
-const port = 3001; // Setting which port to listen or receive requests
+// Setting which port to listen or receive requests
+//const port = 3001; 
+
+//for Render to work(as Render assigns its own port)
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}!`);
@@ -304,11 +314,11 @@ app.get(
 );
 
 // 8. POST /chat  (placeholder AI endpoint for the chat widget)
-import Groq from "groq-sdk";
+//import Groq from "groq-sdk";
 import dotenv from "dotenv";
 dotenv.config();
 
-const groqClient = new Groq({ apiKey: process.env.GROQ_API_KEY });
+//const groqClient = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.post("/chat", async (request, response) => {
   try {
@@ -320,7 +330,7 @@ app.post("/chat", async (request, response) => {
         .json({ error: "Missing userMessageText in request body" });
     }
 
-    const aiReply = await groqClient.chat.completions.create({
+    /*const aiReply = await groqClient.chat.completions.create({
       model: "llama3-8b-8192",
       messages: [
         {
@@ -333,11 +343,15 @@ app.post("/chat", async (request, response) => {
           content: userMessageText,
         },
       ],
-    });
+    });*/
+
+   /* const replyText =
+      aiReply.choices?.[0]?.message?.content ||
+      "I'm sorry, I couldn't generate a response.";*/
 
     const replyText =
-      aiReply.choices?.[0]?.message?.content ||
-      "I'm sorry, I couldn't generate a response.";
+      "Our AI helper isn’t configured on this server yet, but we received your message: " +
+      userMessageText;
 
     return response.json({ replyText });
   } catch (error) {
